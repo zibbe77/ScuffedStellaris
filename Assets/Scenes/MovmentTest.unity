@@ -408,7 +408,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1829116582}
-  - component: {fileID: 1829116583}
   m_Layer: 0
   m_Name: Camera Rig
   m_TagString: Untagged
@@ -432,25 +431,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1829116583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1829116581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88bfe332f3ef034419721e745951fb0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 558487141}
-  fastSpeed: 0.8
-  normalSpeed: 0.5
-  movementSpeed: 0.5
-  movementTime: 0.1
-  rotationAmount: 0.5
-  zoomAmount: {x: 0, y: -0.4, z: 0.4}
-  newPosition: {x: 0, y: 0, z: 0}
-  newRotation: {x: 0, y: 0, z: 0, w: 0}
-  NewZoom: {x: 0, y: 0, z: 0}
