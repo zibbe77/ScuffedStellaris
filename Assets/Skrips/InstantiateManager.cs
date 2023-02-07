@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 
 public class InstantiateManager : MonoBehaviour
 {
@@ -35,10 +37,9 @@ public class InstantiateManager : MonoBehaviour
             for(i = 0; i<planetAmount;i++)
             {
                 //Add a new planet
-                //Just fills list with multiple of same prefab !!! PLS CHANGE !!!
                 planets.Add(planetPrefab);
                 rotate.degreesPerSecond = (i+1)/0.05f;
-                radius = (i*2f)+2f;
+                radius = ((float)Math.Pow(i+1,2));
                 for (n = 0; n < num_points; n++) {
                     var angle = (Mathf.PI * 2f) * ((float)n / num_points);
                     points[n] = new Vector3(Mathf.Sin(angle) * radius, 0f, Mathf.Cos(angle) * radius);
