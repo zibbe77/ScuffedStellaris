@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a13bb3e601499d42886246c7cd09d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  degreesPerSecond: 140
+  degreesPerSecond: 0
 --- !u!120 &4761981165692689138
 LineRenderer:
   m_ObjectHideFlags: 0
