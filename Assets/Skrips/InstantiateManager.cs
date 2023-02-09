@@ -13,8 +13,11 @@ public class InstantiateManager : MonoBehaviour
     System.Random rng = new System.Random();
     public int planetAmount;
     public bool generated;
+    public float starScaleMin;
+    public float starScaleMax;
     public float planetScaleMin;
     public float planetScaleMax;
+    float scale;
     int i = 0;
     int n = 0;
     float radius = 10f; // radius of circle in units
@@ -31,17 +34,21 @@ public class InstantiateManager : MonoBehaviour
         if (!generated)
         {
             //Add a sun
-            GameObject instantiatedObject = Instantiate(starPrefab, new Vector3(0f,0f,0f), Quaternion.Euler(0f, 0f, 0f));
-            instantiatedObject.name = "Star " + i.ToString();
+            scale = (float)(rng.NextDouble()*(starScaleMax-starScaleMin))+starScaleMin;
+            starPrefab.transform.localScale = new Vector3(scale,scale,scale);
+            starPrefab.name = "Star " + i.ToString();
+            starPrefab = Instantiate(starPrefab, new Vector3(0f,0f,0f), Quaternion.Euler(0f, 0f, 0f));
+            
 
             for(i = 0; i<planetAmount;i++)
             {
                 //Add a new planet
                 planets.Add(planetPrefab);
 
-                //Set rotation and radius
+                //Set rotation,radius and scale
                 rotate.degreesPerSecond = (i+1)/0.05f;
-                radius = ((float)Math.Pow(i+1,2));
+                radius = ((float)Math.Pow((i+1)*8,1.4));
+                scale = (float)(rng.NextDouble()*(planetScaleMax-planetScaleMin))+planetScaleMin;
 
                 //Add points in orbit
                 for (n = 0; n < numPoints; n++) {
@@ -52,7 +59,7 @@ public class InstantiateManager : MonoBehaviour
 
                 //Set Planet Scale and Instantiate
                 planets[i].name = "Planet " + i.ToString();
-                planets[i].transform.localScale = new Vector3(i+1,i+1,i+1);
+                planets[i].transform.localScale = new Vector3(scale,scale,scale);
                 planets[i] = Instantiate(planetPrefab, points[rng.Next(numPoints)], Quaternion.Euler(0f, 0f, 0f));
             }
         }
