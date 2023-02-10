@@ -48,7 +48,8 @@ public class InstantiateManager : MonoBehaviour
                 //Set rotation,radius and scale
                 rotate.degreesPerSecond = (i+1)/0.05f;
                 radius = ((float)Math.Pow((i+1)*8,1.4));
-                scale = (float)(rng.NextDouble()*(planetScaleMax-planetScaleMin))+planetScaleMin;
+                scale = (float)(Math.Pow(rng.NextDouble()*(planetScaleMax-planetScaleMin),1+(i/2))+planetScaleMin);
+                //!!!!!Förbätra ekvationen för scale!!!!!
 
                 //Add points in orbit
                 for (n = 0; n < numPoints; n++) {
