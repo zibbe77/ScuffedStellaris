@@ -157,9 +157,9 @@ MonoBehaviour:
   planets: []
   planetAmount: 3
   generated: 0
-  starScaleMin: 20
-  starScaleMax: 25
-  planetScaleMin: 1
+  starScaleMin: 15
+  starScaleMax: 20
+  planetScaleMin: 2
   planetScaleMax: 5
 --- !u!4 &333421694
 Transform:
