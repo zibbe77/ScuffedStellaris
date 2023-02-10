@@ -1,21 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MoveHud : MonoBehaviour
 {
-    private RectTransform transform;
-    public Vector3 setTransform;
+    [SerializeField]
+    private Canvas canvas;
 
-    // Start is called before the first frame update
-    private void Awake()
+    public void DragHandler(BaseEventData data)
     {
-        transform = GetComponent<RectTransform>();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        transform.position = setTransform;
-        transform.anchoredPosition = new Vector2(setTransform.x, setTransform.y);
+        PointerEventData pointerData = (PointerEventData)data;
+
+        Vector2 position;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            (RectTransform)canvas.transform,
+            pointerData.position,
+            canvas.worldCamera,
+            out position
+        );
+
+        transform.position = canvas.transform.TransformPoint(position);
     }
 }
