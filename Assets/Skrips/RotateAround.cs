@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RotateAround : MonoBehaviour
 {
-    [SerializeField] private GameObject target;
-    [SerializeField] private float degreesPerSecond = 45;
+    //[SerializeField] private GameObject target;
+    public float degreesPerSecond = 45f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,6 @@ public class RotateAround : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(target.transform.position, new Vector3(0,1,0), degreesPerSecond * Time.deltaTime);
+        transform.RotateAround(new Vector3(0,0,0), new Vector3(0,1,0), degreesPerSecond * Time.deltaTime);
     }
 }

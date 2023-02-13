@@ -47,7 +47,6 @@ public class CameraControllSkrip : MonoBehaviour
 
     //[BoxGroup("Edge Movement")]
     [SerializeField]
-    [Range(0f, 0.1f)]
     private float edgeTolerance = 0.05f;
 
     //value set in various functions 
@@ -59,6 +58,9 @@ public class CameraControllSkrip : MonoBehaviour
     //used to track and maintain velocity w/o a rigidbody
     private Vector3 horizontalVelocity;
     private Vector3 lastPosition;
+
+    [SerializeField]
+    private bool scrollingBool = false;
 
     //tracks where the dragging action started
     Vector3 startDrag;
@@ -144,19 +146,22 @@ public class CameraControllSkrip : MonoBehaviour
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Vector3 moveDirection = Vector3.zero;
 
-        //horizontal scrolling
-        if (mousePosition.x < edgeTolerance * Screen.width)
-            moveDirection += -GetCameraRight();
-        else if (mousePosition.x > (1f - edgeTolerance) * Screen.width)
-            moveDirection += GetCameraRight();
+        if (scrollingBool == true)
+        {
+            //horizontal scrolling
+            if (mousePosition.x < edgeTolerance * Screen.width)
+                moveDirection += -GetCameraRight();
+            else if (mousePosition.x > (1f - edgeTolerance) * Screen.width)
+                moveDirection += GetCameraRight();
 
-        //vertical scrolling
-        if (mousePosition.y < edgeTolerance * Screen.height)
-            moveDirection += -GetCameraForward();
-        else if (mousePosition.y > (1f - edgeTolerance) * Screen.height)
-            moveDirection += GetCameraForward();
+            //vertical scrolling
+            if (mousePosition.y < edgeTolerance * Screen.height)
+                moveDirection += -GetCameraForward();
+            else if (mousePosition.y > (1f - edgeTolerance) * Screen.height)
+                moveDirection += GetCameraForward();
 
-        targetPosition += moveDirection;
+            targetPosition += moveDirection;
+        }
     }
 
     private void UpdateBasePosition()
