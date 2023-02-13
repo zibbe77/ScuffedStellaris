@@ -155,12 +155,18 @@ MonoBehaviour:
   starPrefab: {fileID: 2264989799455260973, guid: cdb42968b8f7d274d954968176de334d, type: 3}
   planetPrefab: {fileID: 8805680033743795686, guid: f5fc8044c81165d4eb4beb65f22b38c1, type: 3}
   planets: []
-  planetAmount: 3
+  planetAmount: 8
   generated: 0
+  minOneEach: 0
   starScaleMin: 15
   starScaleMax: 20
   planetScaleMin: 2
   planetScaleMax: 5
+  rockScale: 1
+  gasScale: 2
+  iceScale: 1.5
+  iceDistance: 150
+  planetWeights: 010000000100000001000000
 --- !u!4 &333421694
 Transform:
   m_ObjectHideFlags: 0
