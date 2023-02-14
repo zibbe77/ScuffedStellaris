@@ -116,4 +116,8 @@ public class InstantiateManager : MonoBehaviour
     {
         
     }
+    private void Orbit()
+    {
+        
+    }
 }
