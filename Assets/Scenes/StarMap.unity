@@ -166,7 +166,7 @@ MonoBehaviour:
   gasScale: 2
   iceScale: 1.5
   iceDistance: 150
-  planetWeights: 010000000100000001000000
+  planetWeights: 010000000100000002000000
 --- !u!4 &333421694
 Transform:
   m_ObjectHideFlags: 0
