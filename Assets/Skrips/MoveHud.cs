@@ -16,7 +16,7 @@ public class MoveHud : MonoBehaviour
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             (RectTransform)canvas.transform,
             pointerData.position,
-            canvas.worldCamera,
+            null,
             out position
         );
 
