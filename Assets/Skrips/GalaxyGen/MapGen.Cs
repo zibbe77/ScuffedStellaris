@@ -21,7 +21,8 @@ public class Galaxy : MonoBehaviour
                 // if the target star is the current star or already has a connection to the current star
                 if(hyperTarget == hyperRoot || hyperTarget.Contains(hyperRoot)) break; 
                 //If the stars are close enough together 
-                if(Vector3.Distance(hyperRoot, hyperTarget) < 5){
+                double laneDistance = Vector3.Distance(hyperRoot, hyperTarget);
+                if(laneDistance < 5){
                     hyperRoot.hyperlaneNeighbors.Add(hyperTarget);
                     hyperTarget.hyperlaneNeighbors.Add(hyperRoot);
                 }
@@ -50,8 +51,10 @@ public class StarNode : MonoBehaviour
     public string name;
     public var starmap; //placeholder for ANANAS
     public Vector3 location = Vector3;
+    public double hyperStreamHeight = 1;
     public List<StarNode> hyperlaneNeighbors = new List<StarNode>();
 
+    //TODO: distance
     static public StarNode CreateStar(){
         StarNode newStar;
         
@@ -60,5 +63,22 @@ public class StarNode : MonoBehaviour
         newStar.location.z = 0;
 
         return newStar;
+    }
+}
+
+public class SubStream : MonoBehaviour
+{
+    (StarNode, double)[] stars = new (StarNode, double)[2];
+    double distance;
+    double distanceModifer = 0;
+    public SubStream(StarNode root, StarNode target)
+    {
+        distance = Vector3.Distance(root, target)
+        star[0,0] = root;
+        star[1,0] = target;
+        //Pre-calculating hyperstream height so we don't need to do that every time some ship needs to go somewhere.
+        double difference = root.hyperStreamHeight - target.hyperStreamHeight;
+        star[0,1] = difference;
+        star[1,1] = !difference;
     }
 }
