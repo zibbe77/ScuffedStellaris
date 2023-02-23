@@ -134,6 +134,118 @@ public partial class @CamraControllActions : IInputActionCollection2, IDisposabl
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CamraNew"",
+            ""id"": ""b91e8d38-cf7a-4aed-91ed-9ebf1cff1824"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""d29f0675-9db0-4735-85c2-9c08b0640c62"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RotateCamera"",
+                    ""type"": ""Value"",
+                    ""id"": ""f3039ff4-2f75-4f4c-a15f-1885c927309b"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ZoomCamera"",
+                    ""type"": ""Value"",
+                    ""id"": ""03a9ad66-a2c6-454e-b9ba-711e2f359a36"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""743ce8a8-8365-4295-bd43-9e2efd39a8bb"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""76e5dee2-0971-4a53-a895-b647b26129e1"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""862ad833-d1a9-4b4d-bc3b-044ac1c9ed4b"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""3e8d47f9-77b8-49d8-b284-2f24a2a7db4b"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""65804739-94ca-4c47-98c2-4a1c9551f710"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9bc2e9b2-c47a-4f73-aa6b-b9cfe6689371"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ac7be1f-5895-41f1-9b03-16403ff1165d"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -143,6 +255,11 @@ public partial class @CamraControllActions : IInputActionCollection2, IDisposabl
         m_Camra_Movement = m_Camra.FindAction("Movement", throwIfNotFound: true);
         m_Camra_RotateCamera = m_Camra.FindAction("RotateCamera", throwIfNotFound: true);
         m_Camra_ZoomCamera = m_Camra.FindAction("ZoomCamera", throwIfNotFound: true);
+        // CamraNew
+        m_CamraNew = asset.FindActionMap("CamraNew", throwIfNotFound: true);
+        m_CamraNew_Movement = m_CamraNew.FindAction("Movement", throwIfNotFound: true);
+        m_CamraNew_RotateCamera = m_CamraNew.FindAction("RotateCamera", throwIfNotFound: true);
+        m_CamraNew_ZoomCamera = m_CamraNew.FindAction("ZoomCamera", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -247,7 +364,62 @@ public partial class @CamraControllActions : IInputActionCollection2, IDisposabl
         }
     }
     public CamraActions @Camra => new CamraActions(this);
+
+    // CamraNew
+    private readonly InputActionMap m_CamraNew;
+    private ICamraNewActions m_CamraNewActionsCallbackInterface;
+    private readonly InputAction m_CamraNew_Movement;
+    private readonly InputAction m_CamraNew_RotateCamera;
+    private readonly InputAction m_CamraNew_ZoomCamera;
+    public struct CamraNewActions
+    {
+        private @CamraControllActions m_Wrapper;
+        public CamraNewActions(@CamraControllActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_CamraNew_Movement;
+        public InputAction @RotateCamera => m_Wrapper.m_CamraNew_RotateCamera;
+        public InputAction @ZoomCamera => m_Wrapper.m_CamraNew_ZoomCamera;
+        public InputActionMap Get() { return m_Wrapper.m_CamraNew; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CamraNewActions set) { return set.Get(); }
+        public void SetCallbacks(ICamraNewActions instance)
+        {
+            if (m_Wrapper.m_CamraNewActionsCallbackInterface != null)
+            {
+                @Movement.started -= m_Wrapper.m_CamraNewActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_CamraNewActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_CamraNewActionsCallbackInterface.OnMovement;
+                @RotateCamera.started -= m_Wrapper.m_CamraNewActionsCallbackInterface.OnRotateCamera;
+                @RotateCamera.performed -= m_Wrapper.m_CamraNewActionsCallbackInterface.OnRotateCamera;
+                @RotateCamera.canceled -= m_Wrapper.m_CamraNewActionsCallbackInterface.OnRotateCamera;
+                @ZoomCamera.started -= m_Wrapper.m_CamraNewActionsCallbackInterface.OnZoomCamera;
+                @ZoomCamera.performed -= m_Wrapper.m_CamraNewActionsCallbackInterface.OnZoomCamera;
+                @ZoomCamera.canceled -= m_Wrapper.m_CamraNewActionsCallbackInterface.OnZoomCamera;
+            }
+            m_Wrapper.m_CamraNewActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @RotateCamera.started += instance.OnRotateCamera;
+                @RotateCamera.performed += instance.OnRotateCamera;
+                @RotateCamera.canceled += instance.OnRotateCamera;
+                @ZoomCamera.started += instance.OnZoomCamera;
+                @ZoomCamera.performed += instance.OnZoomCamera;
+                @ZoomCamera.canceled += instance.OnZoomCamera;
+            }
+        }
+    }
+    public CamraNewActions @CamraNew => new CamraNewActions(this);
     public interface ICamraActions
+    {
+        void OnMovement(InputAction.CallbackContext context);
+        void OnRotateCamera(InputAction.CallbackContext context);
+        void OnZoomCamera(InputAction.CallbackContext context);
+    }
+    public interface ICamraNewActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnRotateCamera(InputAction.CallbackContext context);
