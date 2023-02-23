@@ -74,7 +74,6 @@ public class InstantiateManager : MonoBehaviour
 
                 //Set rotation and radius
                 rotate.degreesPerSecond = 30f;
-                //radius = (float) Math.Pow((i+1)*8,1.4);
                 radius = (float)(starPrefab.transform.localScale.x * 2 * (i+1));
 
                 //Set planet type; Only ice if far away from sun;
