@@ -152,7 +152,7 @@ public partial class @CamraControllActions : IInputActionCollection2, IDisposabl
                     ""name"": ""RotateCamera"",
                     ""type"": ""Value"",
                     ""id"": ""f3039ff4-2f75-4f4c-a15f-1885c927309b"",
-                    ""expectedControlType"": ""Vector3"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
